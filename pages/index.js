@@ -4,8 +4,8 @@ import { Container } from "@mui/system";
 
 export default function Home() {
 	return (
-      <Navbar/>
-		// <Container maxWidth="xs">
-    // </Container>
+		<Container maxWidth="xs">
+      
+    </Container>
 	);
 }
