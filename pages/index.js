@@ -1,11 +1,11 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import { Typography } from "@mui/material";
+import { Navbar } from "../components/Navbar";
+
+import { Container } from "@mui/system";
 
 export default function Home() {
 	return (
-		<Typography>
-		I am working
-		</Typography>
+      <Navbar/>
+		// <Container maxWidth="xs">
+    // </Container>
 	);
 }
