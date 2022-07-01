@@ -18,7 +18,6 @@ export default function MyApp(props) {
 	const { Component, emotionCache =
 		clientSideEmotionCache, pageProps } = props;
 
-	console.log(theme)
 	return (
 		<CacheProvider value={emotionCache}>
 			<Head>
