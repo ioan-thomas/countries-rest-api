@@ -1,8 +1,6 @@
-const Card = (countries) => {
+const Card = () => {
     return (  
-        countries.map(country => (
-            
-        ))
+        // output one card. In other component, map through array and use this for every one.
     );
 }
  
