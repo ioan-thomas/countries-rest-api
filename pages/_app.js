@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
-import theme from '../src/theme';
+import theme from '../src/Theme';
 import createEmotionCache from '../src/createEmotionCache';
 
 // Client-side cache shared for the whole session
@@ -16,6 +16,7 @@ export default function MyApp(props) {
 	const { Component, emotionCache =
 		clientSideEmotionCache, pageProps } = props;
 
+	console.log(theme)
 	return (
 		<CacheProvider value={emotionCache}>
 			<Head>
