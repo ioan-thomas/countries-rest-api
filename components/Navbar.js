@@ -9,7 +9,10 @@ export function Navbar() {
                 <Container maxWidth='lg' sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography variant="h5">Where in the world?</Typography>
                     <div style={{display: 'flex'}}>
-                        <DarkModeOutlinedIcon/>
+                        <DarkModeOutlinedIcon 
+                        fontSize="small"
+                        sx={{mr: 0.250, pb: 0.4}}
+                        />
                         <Typography variant='body1' sx={{fontSize: 12, fontWeight: 600}}>Dark Mode</Typography>
                     </div>
                 </Container>
