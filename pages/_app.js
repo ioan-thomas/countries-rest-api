@@ -2,9 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { ThemeProvider } from '@mui/material/styles';
+import theme from '../src/Theme';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
-import theme from '../src/Theme';
 import createEmotionCache from '../src/createEmotionCache';
 import { Navbar } from '../components/Navbar';
 
