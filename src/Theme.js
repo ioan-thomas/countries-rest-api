@@ -20,34 +20,34 @@ const theme = createTheme({
 			default: 'hsl(0, 0%, 98.0392156862745%)'
 		},
 	},
-		typography: {
-			fontFamily: "'Nunito Sans', 'sans-serif'",
-			fontWeightRegular: 300,
-			fontWeightMedium: 600,
-			fontWeightBold: 800,
-			h2:{
-				fontSize: 24,
-				fontWeight: 800
-			},
-			h3: {
-				fontSize: 32,
-				fontWeight: 800
-			},
-			h4: {
-				fontSize: 18,
-				fontWeight: 800
-			}, 
-			h5: {
-				fontSize:14,
-				fontWeight: 800
-			},
-			body1: {
-				fontSize: 14,
-			},
-			body2: {
-				fontSize: 16,
-			}
+	typography: {
+		fontFamily: "'Nunito Sans', 'sans-serif'",
+		fontWeightRegular: 300,
+		fontWeightMedium: 600,
+		fontWeightBold: 800,
+		h2:{
+			fontSize: 24,
+			fontWeight: 800
 		},
+		h3: {
+			fontSize: 32,
+			fontWeight: 800
+		},
+		h4: {
+			fontSize: 18,
+			fontWeight: 800
+		}, 
+		h5: {
+			fontSize:14,
+			fontWeight: 800
+		},
+		body1: {
+			fontSize: 14,
+		},
+		body2: {
+			fontSize: 16,
+		}
+	},
 
 });
 
