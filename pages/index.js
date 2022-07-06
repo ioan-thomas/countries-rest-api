@@ -1,16 +1,53 @@
+// mui components
 import { Container } from "@mui/system";
-import {TextField } from "@mui/material";
 
-export default function Home() {
+// custom
+import Filter from "../components/Filter";
+import SearchField from "../components/SearchField";
+import Cards from "../components/CardLayout";
+import { BorderContext } from "../src/context/CountryBorderContext";
+
+// react/next
+import { useContext, useEffect } from "react";
+
+export const getStaticProps = async () => {
+
+	const res = await fetch('https://restcountries.com/v3.1/all');
+	const data = await res.json();
+	
+	const countryBorders = {};
+
+	const relData = data.map(country => {
+		countryBorders[country.cca3] = country.name.common;
+		return { name: country.name.common, 
+		population: country.population,
+		region: country.region,
+		capital: country.capital ? country.capital : null,
+		flags: country.flags,
+		cca3: country.cca3}
+	})
+
+	return {
+		props: { countries: relData, countryBorders}
+	}
+}
+
+export default function Home({countries, countryBorders}) {
+	const {addBorders, borders} = useContext(BorderContext)
+	console.log(borders);
+
+	useEffect(() => {
+		addBorders(countryBorders)
+	}, [countryBorders, addBorders])
+	
+
 	return (
-		<Container maxWidth="xs">
-			<TextField 
-			color="text"
-			id="filled-search"
-			label='Search for a country...'
-			type="search"
-			sx={{maxWidth: 480, marginTop: 3, minWidth: '100%', backgroundColor: 'hsl(0, 0%, 100%)', }}
-			/>
+		<Container maxWidth='xl'>
+			<Container maxWidth="xs" >
+				<SearchField />
+				<Filter countries={countries}/>
+			</Container>
+			<Cards countries={countries}/>
 		</Container>
 	);
 }
