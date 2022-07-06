@@ -1,12 +1,16 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { ThemeProvider } from '@mui/material/styles';
+
+import { Navbar } from '../components/Navbar';
+import { BorderContextProvider } from '../src/context/CountryBorderContext';
+
+//  mui
 import theme from '../src/Theme';
+import createEmotionCache from '../src/createEmotionCache';
+import PropTypes from 'prop-types';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
-import createEmotionCache from '../src/createEmotionCache';
-import { Navbar } from '../components/Navbar';
 
 // Client-side cache shared for the whole session
 // of the user in the browser.
@@ -18,17 +22,19 @@ export default function MyApp(props) {
 		clientSideEmotionCache, pageProps } = props;
 
 	return (
-		<CacheProvider value={emotionCache}>
-			<Head>
-				<meta name="viewport"
-					content="initial-scale=1, width=device-width" />
-			</Head>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
-					<Navbar/>
-				<Component {...pageProps} />
-			</ThemeProvider>
-		</CacheProvider>
+		<BorderContextProvider>
+			<CacheProvider value={emotionCache}>
+				<Head>
+					<meta name="viewport"
+						content="initial-scale=1, width=device-width" />
+				</Head>
+				<ThemeProvider theme={theme}>
+					<CssBaseline />
+						<Navbar/>
+					<Component {...pageProps} />
+				</ThemeProvider>
+			</CacheProvider>
+		</BorderContextProvider>
 	);
 }
 
