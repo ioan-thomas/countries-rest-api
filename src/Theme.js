@@ -26,15 +26,15 @@ const theme = createTheme({
 		fontWeightMedium: 600,
 		fontWeightBold: 800,
 		h2:{
-			fontSize: 24,
-			fontWeight: 800
-		},
-		h3: {
 			fontSize: 32,
 			fontWeight: 800
 		},
+		h3: {
+			fontSize: 22,
+			fontWeight: 800
+		},
 		h4: {
-			fontSize: 18,
+			fontSize: 20,
 			fontWeight: 800
 		}, 
 		h5: {
@@ -42,10 +42,31 @@ const theme = createTheme({
 			fontWeight: 800
 		},
 		body1: {
-			fontSize: 14,
+			fontSize: 16,
+			// lineHeight: '32px'
 		},
 		body2: {
 			fontSize: 16,
+			fontWeight: 600,
+			lineHeight: '32px'
+		},
+		body3: {
+			fontSize: 18,
+			lineHeight: '32px'
+		},
+		body4: {
+			fontSize: 18,
+			fontWeight: 600,
+			lineHeight: '32px'
+		},
+		body6: {
+			fontSize: 14,
+			lineHeight: '32px'
+		},
+		body7: {
+			fontSize: 14,
+			fontWeight: 600,
+			lineHeight: '32px'
 		}
 	},
 
