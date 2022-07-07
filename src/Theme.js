@@ -20,34 +20,55 @@ const theme = createTheme({
 			default: 'hsl(0, 0%, 98.0392156862745%)'
 		},
 	},
-		typography: {
-			fontFamily: "'Nunito Sans', 'sans-serif'",
-			fontWeightRegular: 300,
-			fontWeightMedium: 600,
-			fontWeightBold: 800,
-			h2:{
-				fontSize: 24,
-				fontWeight: 800
-			},
-			h3: {
-				fontSize: 32,
-				fontWeight: 800
-			},
-			h4: {
-				fontSize: 18,
-				fontWeight: 800
-			}, 
-			h5: {
-				fontSize:14,
-				fontWeight: 800
-			},
-			body1: {
-				fontSize: 14,
-			},
-			body2: {
-				fontSize: 16,
-			}
+	typography: {
+		fontFamily: "'Nunito Sans', 'sans-serif'",
+		fontWeightRegular: 300,
+		fontWeightMedium: 600,
+		fontWeightBold: 800,
+		h2:{
+			fontSize: 32,
+			fontWeight: 800
 		},
+		h3: {
+			fontSize: 22,
+			fontWeight: 800
+		},
+		h4: {
+			fontSize: 20,
+			fontWeight: 800
+		}, 
+		h5: {
+			fontSize:14,
+			fontWeight: 800
+		},
+		body1: {
+			fontSize: 16,
+			// lineHeight: '32px'
+		},
+		body2: {
+			fontSize: 16,
+			fontWeight: 600,
+			lineHeight: '32px'
+		},
+		body3: {
+			fontSize: 18,
+			lineHeight: '32px'
+		},
+		body4: {
+			fontSize: 18,
+			fontWeight: 600,
+			lineHeight: '32px'
+		},
+		body6: {
+			fontSize: 14,
+			lineHeight: '32px'
+		},
+		body7: {
+			fontSize: 14,
+			fontWeight: 600,
+			lineHeight: '32px'
+		}
+	},
 
 });
 
