@@ -6,6 +6,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 // custom
 import SingleCountryLayout from "../components/SingleCountryLayout";
 import Image from "next/image";
+import Link from "next/link";
 
 export const getStaticPaths = async () => {
     const res = await fetch('https://restcountries.com/v3.1/all');
@@ -54,12 +55,12 @@ export default function Country({relData}) {
 
     return (
         <Container maxWidth='xl'>
-            <Button variant="contained" color="primary" sx={{margin: '40px 0 64px 0', padding: '6px 23px', display: 'block'}}>
+            <Link href={'/'}><Button variant="contained" color="primary" sx={{margin: '40px 0 64px 0', padding: '6px 23px', display: 'block'}}>
                 <Box sx={{display: 'flex', gap: 1}}>
                     <KeyboardBackspaceIcon fontSize="small"/>
                     <Typography textTransform="capitalize" sx={{fontSize: '14px'}}>Back</Typography>
                 </Box>
-            </Button>
+            </Button></Link>
 
             <Box component='div' sx={{display: 'flex', gap: '5vw', flexDirection: ['column', 'column', 'row'], justifyContent: 'center', alignItems: 'center'}}>
                 <Box style={{margin: ' 0px 0px 44px 0px'}}>
