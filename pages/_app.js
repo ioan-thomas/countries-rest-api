@@ -22,19 +22,19 @@ export default function MyApp(props) {
 		clientSideEmotionCache, pageProps } = props;
 
 	return (
-		<BorderContextProvider>
-			<CacheProvider value={emotionCache}>
+		<CacheProvider value={emotionCache}>
 				<Head>
 					<meta name="viewport"
 						content="initial-scale=1, width=device-width" />
 				</Head>
 				<ThemeProvider theme={theme}>
-					<CssBaseline />
-						<Navbar/>
-					<Component {...pageProps} />
+					<BorderContextProvider>
+						<CssBaseline />
+							<Navbar/>
+						<Component {...pageProps} />
+					</BorderContextProvider>
 				</ThemeProvider>
 			</CacheProvider>
-		</BorderContextProvider>
 	);
 }
 
