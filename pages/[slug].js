@@ -1,15 +1,11 @@
 // mui componenets
-import { Box, Button, Grid, Typography} from "@mui/material";
-import { Container, maxWidth } from "@mui/system";
+import { Box, Button, Typography} from "@mui/material";
+import { Container} from "@mui/system";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
-// react/next
-import { useContext, useEffect} from "react";
-import Image from "next/image";
-
 // custom
-import { BorderContext } from "../src/context/CountryBorderContext";
 import SingleCountryLayout from "../components/SingleCountryLayout";
+import Image from "next/image";
 
 export const getStaticPaths = async () => {
     const res = await fetch('https://restcountries.com/v3.1/all');
@@ -50,9 +46,7 @@ export const getStaticProps = async ({params}) => {
 }
 
 export default function Country({relData}) {
-    const {borders} = useContext(BorderContext)
     const [country] = relData;
-    console.log(borders);
 
     // useEffect(() => {
     //     console.log(borders);
@@ -60,26 +54,24 @@ export default function Country({relData}) {
 
     return (
         <Container maxWidth='xl'>
-            <Button variant="contained" color="primary" sx={{margin: '40px 0 64px 0', padding: '6px 23px'}}>
+            <Button variant="contained" color="primary" sx={{margin: '40px 0 64px 0', padding: '6px 23px', display: 'block'}}>
                 <Box sx={{display: 'flex', gap: 1}}>
                     <KeyboardBackspaceIcon fontSize="small"/>
                     <Typography textTransform="capitalize" sx={{fontSize: '14px'}}>Back</Typography>
                 </Box>
             </Button>
 
-            <Box variant='div' sx={{background: `url(${country.flags.png || country.flags.svg})`,
-                backgroundSize: 'cover',
-                maxWidth:'560px', 
-                minWidth: '60vw',
-                maxHeight: '401px',
-                minHeight: '60vw',
-                marginBottom: '44px'
-                }}></Box>
-                
-            
-
-        
-            <SingleCountryLayout country={country}/>
+            <Box component='div' sx={{display: 'flex', gap: '5vw', flexDirection: ['column', 'column', 'row'], justifyContent: 'center', alignItems: 'center'}}>
+                <Box style={{margin: ' 0px 0px 44px 0px'}}>
+                    <Image alt={`${country.name.common} flag`} 
+                    src={country.flags.png || country.flags.svg} 
+                    height={401}
+                    width={560}
+                    />
+                </Box>
+                    
+                <SingleCountryLayout country={country}/>
+            </Box>
         </Container>
     )
 }
