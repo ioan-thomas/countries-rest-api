@@ -1,32 +1,34 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, CardActionArea } from '@mui/material';
+import Image from 'next/image';
+
 
 const OneCard = ({name, population, region, capital, flags}) => {
     return (  
         // output one card. In other component, map through array and use this for every one.
         <Card sx={{ maxWidth: 345, minHeight: '336px'}}>
         <CardActionArea>
-          <CardMedia
+          <Image
             component="img"
-            height="140"
-            image={flags.svg || flags.png}
+            height="160"
+            width='264'
+            src={flags.svg || flags.png}
             alt={name + ' flag'}
           />
           <CardContent>
-            <Typography gutterBottom variant="h4" >
+            <Typography variant="h4" sx={{marginBottom: '16px'}}>
               {name}
             </Typography>
-            <Typography variant="body1" color="text.primary" component='span'>
-              <Box fontWeight="600">Population: </Box>{population}
+            <Typography variant="body1" color="text.primary" component='span' sx={{display: 'block'}}>
+              <Box fontWeight="600" component='span'>Population: </Box>{population.toLocaleString()}
             </Typography>
-            <Typography variant="body1" color="text.primary" component='span'>
-              <Box fontWeight="600">Region: </Box>{region}
+            <Typography variant="body1" color="text.primary" component='span' sx={{display: 'block'}}>
+              <Box fontWeight="600" component='span'>Region: </Box>{region}
             </Typography>
-            <Typography variant="body1" color="text.primary" component='span'>
-              <Box fontWeight="600">Capital: </Box>{capital}
+            <Typography variant="body1" color="text.primary" component='span' sx={{display: 'block'}}>
+              <Box fontWeight="600" component='span'>Capital: </Box>{capital}
             </Typography>
           </CardContent>
         </CardActionArea>
