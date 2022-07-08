@@ -7,16 +7,17 @@ import Image from 'next/image';
 
 const OneCard = ({name, population, region, capital, flags}) => {
     return (  
-        // output one card. In other component, map through array and use this for every one.
         <Card sx={{ maxWidth: 345, minHeight: '336px'}}>
         <CardActionArea>
-          <Image
-            component="img"
-            height="160"
-            width='264'
-            src={flags.svg || flags.png}
-            alt={name + ' flag'}
-          />
+            <Image
+              component="img"
+              height="160"
+              width='264'
+              src={flags.svg || flags.png}
+              alt={name + ' flag'}
+              layout="responsive"
+              objectFit='cover'
+            />
           <CardContent>
             <Typography variant="h4" sx={{marginBottom: '16px'}}>
               {name}
