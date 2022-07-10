@@ -11,7 +11,7 @@ export function Navbar() {
                 <Container maxWidth='lg' sx={{display: 'flex', justifyContent: 'space-between'}}>
 
                     <Link href='/'>
-                        <Typography variant='h5' sx={{fontSize: [14, 14, 24], '&:hover':{cursor: 'pointer'}}}>Where in the world?</Typography>
+                        <Typography variant='h5' sx={{fontSize: [18, 24], '&:hover':{cursor: 'pointer'}}}>Where in the world?</Typography>
                     </Link>
 
                     <Box component='div' sx={{display: 'flex', alignItems: 'center', '&:hover':{cursor: 'pointer'}}}>
