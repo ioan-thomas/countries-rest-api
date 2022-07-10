@@ -21,6 +21,7 @@ const OneCard = ({name, population, region, capital, flags}) => {
               alt={name + ' flag'}
               layout="responsive"
               objectFit='cover'
+              priority={flags.svg === 'https://flagcdn.com/gu.svg' ? true : false}
             />
           <CardContent>
             <Typography variant="h4" sx={{marginBottom: '16px'}}>
