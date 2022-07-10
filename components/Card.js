@@ -3,11 +3,15 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Box, CardActionArea } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 const OneCard = ({name, population, region, capital, flags}) => {
     return (  
-        <Card sx={{ maxWidth: 345, minHeight: '336px'}}>
+      <Link href={`/${name.toLowerCase()}`}>
+        <Card 
+        sx={{ maxWidth: 345, minHeight: '336px', 
+        transition: 'all 0.3s ease', '&:hover':{transform: 'rotate(3deg)'}}}>
         <CardActionArea>
             <Image
               component="img"
@@ -34,6 +38,7 @@ const OneCard = ({name, population, region, capital, flags}) => {
           </CardContent>
         </CardActionArea>
       </Card>
+      </Link>
     );
 }
  
