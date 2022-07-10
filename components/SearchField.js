@@ -7,7 +7,7 @@ const SearchField = () => {
 			id="filled-search"
 			label='Search for a country...'
 			type="search"
-			sx={{maxWidth: 480, marginTop: 3, minWidth: '100%', backgroundColor: 'hsl(0, 0%, 100%)', }}
+			sx={{ width:'100%', maxWidth: '480px', backgroundColor: 'hsl(0, 0%, 100%)', marginRight: [0, 2]}}
 			/>
      );
 }
