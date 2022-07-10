@@ -8,7 +8,7 @@ import Cards from "../components/CardLayout";
 import { BorderContext } from "../src/context/CountryBorderContext";
 
 // react/next
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export const getStaticProps = async () => {
 
@@ -33,20 +33,25 @@ export const getStaticProps = async () => {
 }
 
 export default function Home({countries, countryBorders}) {
-	const {addBorders, borders} = useContext(BorderContext)
+	const {addBorders, borders} = useContext(BorderContext);
+	const [filterRegion, setFilterRegion] = useState('all');
 
 	useEffect(() => {
 		addBorders(countryBorders)
 	}, [countryBorders, addBorders])
+
+	const changeFilter = (region) => {
+		setFilterRegion(region);
+    }
 	
 
 	return (
 		<Container maxWidth='xl'>
 			<Container sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between',margin: ['24px 0 32px 0', '48px auto']}}>
 				<SearchField />
-				<Filter countries={countries}/>
+				<Filter countries={countries} changeFilter={changeFilter}/>
 			</Container>
-			<Cards countries={countries}/>
+			<Cards countries={countries} filterRegion={filterRegion}/>
 		</Container>
 	);
 }
