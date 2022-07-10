@@ -44,7 +44,6 @@ export default function Home({countries, countryBorders}) {
 		setFilterRegion(region);
     }
 	
-
 	return (
 		<Container maxWidth='xl'>
 			<Container sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between',margin: ['24px 0 32px 0', '48px auto']}}>
