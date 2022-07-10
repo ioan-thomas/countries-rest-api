@@ -1,10 +1,7 @@
 import { Box } from "@mui/system";
-import { useContext } from "react";
 
-import { BorderContext } from "../src/context/CountryBorderContext";
 
 export default function DisplayBorderCountries({borderCountries}) {
-    console.log(borderCountries);
     return (
 
     borderCountries.map(country => (
