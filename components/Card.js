@@ -3,20 +3,26 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Box, CardActionArea } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 const OneCard = ({name, population, region, capital, flags}) => {
     return (  
-        // output one card. In other component, map through array and use this for every one.
-        <Card sx={{ maxWidth: 345, minHeight: '336px'}}>
+      <Link href={`/${name.toLowerCase()}`}>
+        <Card 
+        sx={{ maxWidth: 345, minHeight: '336px', 
+        transition: 'all 0.3s ease', '&:hover':{transform: 'rotate(3deg)'}}}>
         <CardActionArea>
-          <Image
-            component="img"
-            height="160"
-            width='264'
-            src={flags.svg || flags.png}
-            alt={name + ' flag'}
-          />
+            <Image
+              component="img"
+              height="160"
+              width='264'
+              src={flags.svg || flags.png}
+              alt={name + ' flag'}
+              layout="responsive"
+              objectFit='cover'
+              priority={flags.svg === 'https://flagcdn.com/gu.svg' ? true : false}
+            />
           <CardContent>
             <Typography variant="h4" sx={{marginBottom: '16px'}}>
               {name}
@@ -33,6 +39,7 @@ const OneCard = ({name, population, region, capital, flags}) => {
           </CardContent>
         </CardActionArea>
       </Card>
+      </Link>
     );
 }
  
