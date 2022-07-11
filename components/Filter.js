@@ -25,7 +25,7 @@ const Filter = ({countries, changeFilter}) => {
             component="span"
             onClick={() => setClickedOn(!clickedOn)}
             > 
-                <Box component='span' sx={{fontWeight: '600', fontSize: '14px', 
+                <Box component='span' sx={{ fontSize: '14px', 
                 WebkitUserSelect: 'none', userSelect: 'none'}}>
                     Filter by Region
                 </Box>
@@ -37,12 +37,13 @@ const Filter = ({countries, changeFilter}) => {
             {clickedOn && <Box 
                 sx={{minHeight: '144px', width: '60vw', maxWidth: '200px', 
                 backgroundColor: 'hsl(0, 0%, 100%)', borderRadius: '5px',
-                boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.04)',  zIndex: 5, 
+                boxShadow: '2px 1px 10px rgba(0, 0, 0, 0.09)',  zIndex: 5, 
                 position: 'absolute', marginTop: '4px', WebkitUserSelect: 'none', userSelect: 'none'}}>
 
                     <Box component='ul' sx={{listStyle: 'none'}}>
                         <Box component='li' key="all" onClick={() => handleClick('all')}
-                                sx={{marginBottom: '4px', fontWeight: '600', fontSize: 14, '&:hover':{fontWeight: 800, cursor: 'pointer'}}}>All</Box>
+                                sx={{marginBottom: '4px', fontWeight: '600', fontSize: 14, '&:hover':{fontWeight: '800', cursor: 'pointer'}}}>All</Box>
+                                
                         {regions.map(region => (
                             <Box component='li' key={region} onClick={() => handleClick(region)}
                             sx={{marginBottom: '4px', fontWeight: '600', fontSize: 14, '&:hover':{fontWeight: 800, cursor: 'pointer'}}}>{region}</Box>
