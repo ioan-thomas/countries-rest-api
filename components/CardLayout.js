@@ -1,15 +1,11 @@
 import { Grid } from "@mui/material";
 import OneCard from "./Card";
 import { Container } from "@mui/system";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 
-const Cards = ({countries, filterRegion, searchTerm}) => {
-
-    console.log(countries[1].name.toLowerCase().includes(searchTerm));
-    let filteredCountries = countries;
+const Cards = ({countries, filterRegion}) =>{
     
-    if (!searchTerm) {
-        filteredCountries = (countries.filter(country => {
+        let filteredCountries = countries.filter(country => {
             switch (filterRegion) {
                 case 'all':
                     return true;
@@ -20,16 +16,10 @@ const Cards = ({countries, filterRegion, searchTerm}) => {
                 case 'Europe':
                 case 'Oceania':
                     return country.region === filterRegion
-                    
                 default:
                     return true
             }
-        }))
-    } else if (filterRegion === 'all'){
-        filteredCountries = (countries.filter(country => {
-            return country.name.toLowerCase().includes(searchTerm.toLowerCase())
-        }))
-    }
+        })
 
     return ( 
         <Container maxWidth="lg">
