@@ -1,7 +1,8 @@
+import Link from "next/link";
+
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import Link from "next/link";
 
 export function Navbar() {
     return (
@@ -9,7 +10,6 @@ export function Navbar() {
             <Toolbar  sx={{minHeight: '76px'}}>
 
                 <Container maxWidth='lg' sx={{display: 'flex', justifyContent: 'space-between'}}>
-
                     <Link href='/'>
                         <Typography variant='h5' sx={{fontSize: [18, 24], '&:hover':{cursor: 'pointer'}}}>Where in the world?</Typography>
                     </Link>
