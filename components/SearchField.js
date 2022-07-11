@@ -1,9 +1,8 @@
 import { Box } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import {useState } from "react";
 
 
-const SearchField = ({searchInput, changeSearchInput, inputEl}) => {
+const SearchField = ({searchInput, changeSearchInput}) => {
 
 
     return ( 
@@ -14,10 +13,9 @@ const SearchField = ({searchInput, changeSearchInput, inputEl}) => {
 			<SearchIcon fontSize="medium" sx={{marginRight: '5%', color: 'hsl(0, 0%, 70%)'}}/>
 				<Box
 					component="input"
-					ref={inputEl}
 					placeholder='Search for a country...'
 					sx={{ width:'100%', border: 'none', '&::placeholder':{color: 'hsl(0, 0%, 50%)'}}}
-					onChange={changeSearchInput}
+					onChange={e => changeSearchInput(e.target.value)}
 					value={searchInput}
 					/>
 		</Box>

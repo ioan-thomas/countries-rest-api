@@ -8,7 +8,7 @@ import Cards from "../components/CardLayout";
 import { BorderContext } from "../src/context/CountryBorderContext";
 
 // react/next
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState} from "react";
 
 export const getStaticProps = async () => {
 
@@ -33,10 +33,10 @@ export const getStaticProps = async () => {
 }
 
 export default function Home({countries, countryBorders}) {
-	const {addBorders, borders} = useContext(BorderContext);
+	const {addBorders} = useContext(BorderContext);
 	const [filterRegion, setFilterRegion] = useState('all');
 	const [searchInput, setSearchInput] = useState('')
-	const inputEl = useRef('')
+	const [searchedCountries, setSearchedCountries] = useState(countries)
 
 	useEffect(() => {
 		addBorders(countryBorders)
@@ -46,17 +46,22 @@ export default function Home({countries, countryBorders}) {
 		setFilterRegion(region);
     }
 
-	const changeSearchInput = () => {
-		setSearchInput(inputEl.current.value);
+	const changeSearchInput = val => {
+		setSearchInput(val);
 	}
+
+	useEffect(() => {
+		setSearchedCountries(countries.filter(country => country.name.toLowerCase().includes(searchInput.toLowerCase())));
+	}, [searchInput, countries])
+	
 	
 	return (
 		<Container maxWidth='xl'>
-			<Container sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between',margin: ['24px 0 32px 0', '48px auto']}}>
-				<SearchField searchInput={searchInput} changeSearchInput={changeSearchInput} inputEl={inputEl}/>
+			<Container sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', margin: ['24px 0 32px 0', '48px auto']}}>
+				<SearchField searchInput={searchInput} changeSearchInput={changeSearchInput}/>
 				<Filter countries={countries} changeFilter={changeFilter}/>
 			</Container>
-			<Cards countries={countries} filterRegion={filterRegion} searchTerm={searchInput}/>
+			<Cards countries={searchedCountries} filterRegion={filterRegion} />
 		</Container>
 	);
 }
