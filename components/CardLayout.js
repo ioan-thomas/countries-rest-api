@@ -20,22 +20,24 @@ const Cards = ({countries, filterRegion}) =>{
                     return true
             }
         })
-
+        
     return ( 
         <Container maxWidth="lg">
-        <Grid container spacing={5} >
-            {filteredCountries.map(country => (
-                <Grid item xs={12} sm={6} md={4} lg={3}key={country.name}>
-                        <OneCard 
-                        name={country.name || 'none listed'}
-                        population={country.population || 'none listed'}
-                        region={country.region || 'none listed'}
-                        capital={country.capital || 'none listed'}
-                        flags={country.flags || 'none listed'}
-                        />
-                </Grid>
-            ))}
-        </Grid>
+
+            {filteredCountries.length > 0 && <Grid container spacing={5} >
+                {filteredCountries.map(country => (
+                    <Grid item xs={12} sm={6} md={4} lg={3}key={country.name}>
+                            <OneCard 
+                            name={country.name || 'none listed'}
+                            population={country.population || 'none listed'}
+                            region={country.region || 'none listed'}
+                            capital={country.capital || 'none listed'}
+                            flags={country.flags || 'none listed'}
+                            />
+                    </Grid>
+                ))}
+            </Grid>}
+            {filteredCountries.length < 1 && <p>Sorry, there are no countries that match that criteria.</p>}
         </Container>
     );
 }

@@ -57,9 +57,9 @@ export default function Home({countries, countryBorders}) {
 	
 	return (
 		<Container maxWidth='xl'>
-			<Container sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between',margin: ['24px 0 32px 0', '48px auto']}}>
+			<Container sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', margin: ['24px 0 32px 0', '48px auto']}}>
 				<SearchField searchInput={searchInput} changeSearchInput={changeSearchInput}/>
-				<Filter countries={searchedCountries} changeFilter={changeFilter}/>
+				<Filter countries={countries} changeFilter={changeFilter}/>
 			</Container>
 			<Cards countries={searchedCountries} filterRegion={filterRegion} />
 		</Container>
