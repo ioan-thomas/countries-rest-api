@@ -42,7 +42,8 @@ export const getStaticProps = async ({params}) => {
 		}
 	))
 	return {
-		props: { relData }
+		props: { relData },
+        revalidate: 250
 	}
 }
 
@@ -76,11 +77,3 @@ export default function Country({relData}) {
         </Container>
     )
 }
-
-{/* <Box variant='div' sx={{maxWidth: '560px', minWidth: '60vw', maxHeight: '401px', minHeight: '60vw',position: 'relative', overflow: 'hidden', borderRadius: '15px', marginBottom: '44px'}}>
-<Image alt={`${country.name.common} flag`} 
-src={country.flags.png || country.flags.svg} 
-layout='fill'
-objectFit="contain"
-/>
-</Box> */}
