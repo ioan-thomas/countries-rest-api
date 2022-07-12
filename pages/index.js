@@ -36,7 +36,7 @@ export const getStaticProps = async () => {
 export default function Home({countries, countryBorders}) {
 	const {addBorders} = useContext(BorderContext);
 	const [filterRegion, setFilterRegion] = useState('all');
-	const [searchInput, setSearchInput] = useState('')
+	const [searchCriteria, setSearchCriteria] = useState('')
 	const [searchedCountries, setSearchedCountries] = useState(countries)
 
 	useEffect(() => {
@@ -47,19 +47,19 @@ export default function Home({countries, countryBorders}) {
 		setFilterRegion(region);
     }
 
-	const changeSearchInput = val => {
-		setSearchInput(val);
+	const updateSearchCriteria = val => {
+		setSearchCriteria(val);
 	}
 
 	useEffect(() => {
-		setSearchedCountries(countries.filter(country => country.name.toLowerCase().includes(searchInput.toLowerCase())));
-	}, [searchInput, countries])
+		setSearchedCountries(countries.filter(country => country.name.toLowerCase().includes(searchCriteria.toLowerCase())));
+	}, [searchCriteria, countries])
 	
 	
 	return (
 		<Container maxWidth='xl'>
 			<Container sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', margin: ['24px 0 32px 0', '48px auto']}}>
-				<SearchField searchInput={searchInput} changeSearchInput={changeSearchInput}/>
+				<SearchField updateSearchCriteria={updateSearchCriteria}/>
 				<Filter countries={countries} changeFilter={changeFilter}/>
 			</Container>
 			<Cards countries={searchedCountries} filterRegion={filterRegion} />
