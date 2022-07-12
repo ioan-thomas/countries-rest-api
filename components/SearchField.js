@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 const SearchField = ({searchInput, changeSearchInput}) => {
 
 
+
     return ( 
 		<Box sx={{ width:'100%', maxWidth: '480px', backgroundColor: 'hsl(0, 0%, 100%)', 
 		marginRight: [0, 2], marginBottom: ['40px', '40px', 0], padding: '19px 0 19px 24px', 
