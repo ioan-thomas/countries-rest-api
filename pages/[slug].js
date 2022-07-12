@@ -55,7 +55,7 @@ export default function Country({relData}) {
 
     return (
         <Container maxWidth='xl'>
-            <Link href={'/'}><Button variant="contained" color="primary" sx={{margin: '40px 0 64px 0', padding: '6px 23px', display: 'block'}}>
+            <Link href={'/'}><Button variant="contained" color="primary" sx={{margin: '40px 0 64px 0', padding: '6px 23px', display: 'block', '&:hover':{backgroundColor: 'hsl(0, 0%, 96%)', boxShadow: 'none'}}}>
                 <Box sx={{display: 'flex', gap: 1}}>
                     <KeyboardBackspaceIcon fontSize="small"/>
                     <Typography textTransform="capitalize" sx={{fontSize: '14px'}}>Back</Typography>
