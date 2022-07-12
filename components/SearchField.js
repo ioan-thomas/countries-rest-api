@@ -1,10 +1,30 @@
 import { Box } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import {useState } from "react";
 
 
-const SearchField = ({searchInput, changeSearchInput}) => {
+const SearchField = ({updateSearchCriteria}) => {
 
+	const [inputText, setInputText] = useState('')
 
+	const updateDebounce = debounce(text => {
+		updateSearchCriteria(text)
+	}, 500)
+
+	const updateInput = eventVal => {
+		setInputText(eventVal);
+		updateDebounce(eventVal)
+	}
+
+	function debounce(cb, delay = 1000){
+		let timeout;
+		return (...args) => {
+			clearTimeout(timeout)
+			timeout = setTimeout(() => {
+				cb(...args)
+			}, delay)
+		}
+	}
 
     return ( 
 		<Box sx={{ width:'100%', maxWidth: '480px', backgroundColor: 'hsl(0, 0%, 100%)', 
@@ -16,8 +36,8 @@ const SearchField = ({searchInput, changeSearchInput}) => {
 					component="input"
 					placeholder='Search for a country...'
 					sx={{ width:'100%', border: 'none', '&::placeholder':{color: 'hsl(0, 0%, 50%)'}}}
-					onChange={e => changeSearchInput(e.target.value)}
-					value={searchInput}
+					onChange={e => updateInput(e.target.value)}
+					value={inputText}
 					/>
 		</Box>
      );
