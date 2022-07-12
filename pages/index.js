@@ -28,7 +28,8 @@ export const getStaticProps = async () => {
 	})
 
 	return {
-		props: { countries: relData, countryBorders}
+		props: { countries: relData, countryBorders},
+        revalidate: 250
 	}
 }
 
