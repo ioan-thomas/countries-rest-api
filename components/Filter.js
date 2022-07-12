@@ -3,8 +3,10 @@ import { useState } from "react";
 import { Box } from "@mui/system";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { useTheme } from "@mui/material/styles";
 
 const Filter = ({countries, changeFilter}) => {
+    const theme = useTheme()
     const [clickedOn, setClickedOn] = useState(false);
 
     let regions = new Set(countries.map(country => country.region))
@@ -18,8 +20,8 @@ const Filter = ({countries, changeFilter}) => {
         <Box>
             <Box 
             sx={{width: '60vw', maxWidth: '200px', height: '56px', 
-            backgroundColor: 'hsl(0, 0%, 100%)', borderRadius: '5px',
-            boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.04)', display: 'flex', 
+            backgroundColor: theme.palette.primary.main, borderRadius: '5px',
+            boxShadow: theme.palette.boxShadow.boxShadow, display: 'flex', 
             justifyContent: 'space-between', alignItems:'center', padding: '18px 20px', 
             '&:hover':{cursor: 'pointer'}}} 
             component="span"
@@ -36,8 +38,8 @@ const Filter = ({countries, changeFilter}) => {
 
             {clickedOn && <Box 
                 sx={{minHeight: '144px', width: '60vw', maxWidth: '200px', 
-                backgroundColor: 'hsl(0, 0%, 100%)', borderRadius: '5px',
-                boxShadow: '2px 1px 10px rgba(0, 0, 0, 0.09)',  zIndex: 5, 
+                backgroundColor: theme.palette.primary.main, borderRadius: '5px',
+                boxShadow: theme.palette.boxShadow.boxShadow,  zIndex: 5, 
                 position: 'absolute', marginTop: '4px', WebkitUserSelect: 'none', userSelect: 'none'}}>
 
                     <Box component='ul' sx={{listStyle: 'none'}}>

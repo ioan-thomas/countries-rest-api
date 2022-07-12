@@ -1,12 +1,13 @@
 import Link from "next/link";
 
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography, useTheme } from "@mui/material";
 import { Container } from "@mui/system";
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 export function Navbar() {
+    const theme = useTheme()
     return (
-        <AppBar position="sticky">
+        <AppBar position="sticky" sx={{backgroundColor: theme.palette.primary, boxShadow: theme.palette.boxShadow}}>
             <Toolbar  sx={{minHeight: '76px'}}>
 
                 <Container maxWidth='lg' sx={{display: 'flex', justifyContent: 'space-between'}}>

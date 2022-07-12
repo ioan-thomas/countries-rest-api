@@ -1,7 +1,6 @@
 import { Grid } from "@mui/material";
 import OneCard from "./Card";
 import { Container } from "@mui/system";
-import {useState } from "react";
 
 const Cards = ({countries, filterRegion}) =>{
     
