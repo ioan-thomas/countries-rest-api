@@ -16,8 +16,14 @@ const theme = createTheme({
 			primary: 'hsl(200, 15%, 8%)',
 			secondary: 'hsl(0, 0%, 52%)'
 		},
-		background: {
-			default: 'hsl(0, 0%, 98.0392156862745%)'
+		boxShadow: {
+			boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.04)'
+		},
+		searchIcon: {
+			primary: 'hsl(0, 0%, 70%)'
+		},
+		hoverColor: {
+			primary: 'hsl(0, 0%, 96%)'
 		},
 	},
 	typography: {
