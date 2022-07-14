@@ -3,9 +3,10 @@ import { Box, Grid, Typography } from "@mui/material";
 import DisplayBorderCountries from "./DisplayBorderCountries";
 
 
-export default function SingleCountryLayout({country}) {
+export default function SingleCountryLayout({country, allBorders}) {
     const nativeKey = Object.keys(country.name.nativeName)[0];
     const theCurrency = Object.keys(country.currencies)[0];
+
   return (
     <Grid container spacing={2}>
                 <Grid item xs={12} lg={12}>
@@ -50,10 +51,10 @@ export default function SingleCountryLayout({country}) {
                     </Box>
                 </Grid>
 
-                {country.borderCountries && <Grid item xs={12} sm={12}>
+                {country.borders && <Grid item xs={12} sm={12}>
                     <Box>
                         <Typography variant="body7" component='span'>Border Countries: </Typography>
-                        <DisplayBorderCountries borderCountries={country.borderCountries}/>
+                        <DisplayBorderCountries borderCountries={country.borders} allBorders={allBorders}/>
                     </Box>
                 
                 </Grid>}
