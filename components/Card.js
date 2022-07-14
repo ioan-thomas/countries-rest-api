@@ -13,12 +13,13 @@ const OneCard = ({name, population, region, capital, flags}) => {
       <Link href={"/[slug]"} as={`/${name.toLowerCase()}`}>
         <Card 
         sx={{ maxWidth: 345, minHeight: '336px', 
-        transition: 'all 0.3s ease', '&:hover':{transform: 'rotate(3deg)', cursor: 'pointer', backgroundColor: 'hoverColor.primary'}, backgroundColor: 'primary.main'}}>
+        transition: 'all 0.3s ease', '&:hover':{transform: 'rotate(3deg)', cursor: 'pointer', backgroundColor: 'hoverColor.primary'}, backgroundColor: 'primary.main',
+        boxShadow: theme.palette.boxShadow.primary}}>
             <Image
               component="img"
               height="160" 
               width='264'
-              src={flags.png || flags.svg}
+              src={flags.svg || flags.png}
               alt={name + ' flag'}
               layout="responsive"
               objectFit='cover'

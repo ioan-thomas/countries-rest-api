@@ -31,7 +31,7 @@ const SearchField = ({updateSearchCriteria}) => {
 		<Box sx={{ width:'100%', maxWidth: '480px', backgroundColor: 'primary.main', 
 		marginRight: [0, 2], marginBottom: ['40px', '40px', 0], padding: '19px 0 19px 24px', 
 		height: '56px', display: 'flex', alignItems: 'center', borderRadius: '5px',
-		boxShadow: theme.palette.boxShadow}}>
+		boxShadow: theme.palette.boxShadow.primary}}>
 			<SearchIcon fontSize="medium" sx={{marginRight: '5%', color: theme.palette.searchIcon.primary}}/>
 				<Box
 					component="input"

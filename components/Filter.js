@@ -21,7 +21,7 @@ const Filter = ({countries, changeFilter}) => {
             <Box 
             sx={{width: '60vw', maxWidth: '200px', height: '56px', 
             backgroundColor: theme.palette.primary.main, borderRadius: '5px',
-            boxShadow: theme.palette.boxShadow.boxShadow, display: 'flex', 
+            boxShadow: theme.palette.boxShadow.primary, display: 'flex', 
             justifyContent: 'space-between', alignItems:'center', padding: '18px 20px', 
             '&:hover':{cursor: 'pointer', backgroundColor: 'hoverColor.primary'}}} 
             component="span"
