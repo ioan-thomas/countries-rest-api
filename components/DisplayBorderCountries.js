@@ -1,11 +1,17 @@
-import { useTheme } from "@emotion/react";
 import { Box } from "@mui/system";
+import { useTheme } from "@emotion/react";
 
-export default function DisplayBorderCountries({borderCountries}) {
-    const theme = useTheme()
+export default function DisplayBorderCountries({borderCountries, allBorders}) {
+    const theme = useTheme();
+    const thisCountryBorders = borderCountries.map(country => {
+       return allBorders[country]
+    });
+
     return (
-    borderCountries.map(country => (
-        <Box key={country} sx={{fontSize: '12px', padding: '6px 23px', backgroundColor: `${theme.palette.secondary}`, display: 'inline-block', boxShadow: '0px 0px 2.5px 1px #d0d0d0', margin: '5px'}}>{country}</Box>
+        thisCountryBorders.map(country => (
+        
+        <Box key={country} sx={{fontSize: '12px', padding: '6px 23px', backgroundColor: 'primary.main', display: 'inline-block', boxShadow: theme.palette.boxShadow.primary, margin: '5px'}}>{country}</Box>
+
     ))
     )
 }
