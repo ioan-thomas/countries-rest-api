@@ -21,7 +21,7 @@ export const getDesignTokens = (mode) => ({
 				default: 'hsl(0, 0%, 98.0392156862745%)'
 			},
 			boxShadow: {
-				boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.04)'
+				primary: '1px 1px 3px rgba(0, 0, 0, 0.04)'
 			},
 			searchIcon: {
 				primary: '#B2B2B2'
@@ -45,7 +45,7 @@ export const getDesignTokens = (mode) => ({
 				secondary: '#FFFFFF'
 			},
 			boxShadow: {
-				boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.04)'
+				primary: '1px 1px 3px rgba(255, 255, 255, 0.03)'
 			},
 			searchIcon: {
 				primary: '#FFFFFF'
