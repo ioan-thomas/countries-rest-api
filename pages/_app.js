@@ -35,6 +35,7 @@ export default function MyApp(props) {
 					<Head>
 						<meta name="viewport"
 							content="initial-scale=1, width=device-width" />
+						<title>Where in the world?</title>
 					</Head>
 					<CssBaseline />
 						<Navbar changeMode={toggleColorMode}/>
