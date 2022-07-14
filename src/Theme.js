@@ -1,25 +1,60 @@
-import { createTheme } from '@mui/material/styles';
-
 // Create a theme instance.
-const theme = createTheme({
+export const getDesignTokens = (mode) => ({
 	palette: {
-		background:{
-			default: 'hsl(0, 0%, 98%)'
-		},
-		primary: {
-			main: 'hsl(0, 0%, 100%)',
-		},
-		secondary: {
-			main: 'hsl(0, 0%, 98%)',
-		},
-		text: {
-			primary: 'hsl(200, 15%, 8%)',
-			secondary: 'hsl(0, 0%, 52%)'
-		},
-		background: {
-			default: 'hsl(0, 0%, 98.0392156862745%)'
-		},
-	},
+		mode,
+		...mode === 'light'
+		? {
+			background:{
+				default: 'hsl(0, 0%, 98%)'
+			},
+			primary: {
+				main: 'hsl(0, 0%, 100%)',
+			},
+			secondary: {
+				main: 'hsl(0, 0%, 98%)',
+			},
+			text: {
+				primary: 'hsl(200, 15%, 8%)',
+				secondary: 'hsl(0, 0%, 52%)'
+			},
+			background: {
+				default: 'hsl(0, 0%, 98.0392156862745%)'
+			},
+			boxShadow: {
+				boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.04)'
+			},
+			searchIcon: {
+				primary: '#B2B2B2'
+			},
+			hoverColor: {
+				primary: 'hsl(0, 0%, 95%)'
+			},
+		}
+		: {
+			background:{
+				default: '#1f2c36'
+			},
+			primary: {
+				main: '#2b3844',
+			},
+			secondary: {
+				main: '#1f2c36',
+			},
+			text: {
+				primary: '#FFFFFF',
+				secondary: '#FFFFFF'
+			},
+			boxShadow: {
+				boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.04)'
+			},
+			searchIcon: {
+				primary: '#FFFFFF'
+			},
+			hoverColor: {
+				primary: 'hsl(208.8, 22.522522522522518%, 31.764705882352942%)'
+			},
+		}
+	}, 
 	typography: {
 		fontFamily: "'Nunito Sans', 'sans-serif'",
 		fontWeightRegular: 300,
@@ -47,7 +82,6 @@ const theme = createTheme({
 		},
 		body1: {
 			fontSize: 16,
-			// lineHeight: '32px'
 		},
 		body2: {
 			fontSize: 16,
@@ -72,8 +106,5 @@ const theme = createTheme({
 			fontWeight: 600,
 			lineHeight: '32px'
 		}
-	},
-
-});
-
-export default theme;
+	}
+})

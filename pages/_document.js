@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import theme from '../src/Theme';
 import createEmotionCache from '../src/createEmotionCache';
 
 export default class MyDocument extends Document {
@@ -9,15 +8,11 @@ export default class MyDocument extends Document {
 		return (
 			<Html lang="en">
 				<Head>
-					{/* PWA primary color */}
-					<meta name="theme-color"
-						content={theme.palette.primary.main} />
+
 					<link 
 					rel="stylesheet" 
 					href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap"
 					/>
-{/* Inject MUI styles first to match with the prepend: true configuration. */}
-					{this.props.emotionStyleTags}
 				</Head>
 				<body>
 					<Main />
