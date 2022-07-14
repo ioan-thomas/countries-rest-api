@@ -48,12 +48,10 @@ export const getStaticProps = async ({params}) => {
 }
 
 export default function Country({relData}) {
+    
     const theme = useTheme()
     const [country] = relData;
 
-    // useEffect(() => {
-    //     console.log(borders);
-    // }, [borders])
 
     return (
             <Container maxWidth='lg'>

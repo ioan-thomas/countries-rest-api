@@ -23,7 +23,7 @@ const Filter = ({countries, changeFilter}) => {
             backgroundColor: theme.palette.primary.main, borderRadius: '5px',
             boxShadow: theme.palette.boxShadow.boxShadow, display: 'flex', 
             justifyContent: 'space-between', alignItems:'center', padding: '18px 20px', 
-            '&:hover':{cursor: 'pointer'}}} 
+            '&:hover':{cursor: 'pointer', backgroundColor: 'hoverColor.primary'}}} 
             component="span"
             onClick={() => setClickedOn(!clickedOn)}
             > 

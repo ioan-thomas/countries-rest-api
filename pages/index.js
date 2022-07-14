@@ -39,7 +39,6 @@ export default function Home({countries, countryBorders}) {
 	const [searchCriteria, setSearchCriteria] = useState('')
 	const [searchedCountries, setSearchedCountries] = useState(countries)
 
-
 	useEffect(() => {
 		addBorders(countryBorders)
 	}, [countryBorders, addBorders])
