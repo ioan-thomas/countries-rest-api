@@ -3,10 +3,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import DisplayBorderCountries from "./DisplayBorderCountries";
 
 
-export default function SingleCountryLayout({country, allBorders}) {
-    const nativeKey = Object.keys(country.name.nativeName)[0];
-    const theCurrency = Object.keys(country.currencies)[0];
-
+export default function SingleCountryLayout({country, allBorders}){
   return (
     <Grid container spacing={2}>
                 <Grid item xs={12} lg={12}>
@@ -16,7 +13,10 @@ export default function SingleCountryLayout({country, allBorders}) {
                 <Grid item xs={12} sm={6}>
                     <Box>
                         <Typography variant="body7" component='span' sx={{fontSize: [14, 16]}}>Native Name: </Typography>
-                        <Typography component='span' variant="body6" sx={{fontSize: [14, 16]}}>{country.name.nativeName[nativeKey].common}</Typography>
+                        <Typography component='span' variant="body6" sx={{fontSize: [14, 16]}}>
+                            {country.name.nativeName && country.name.nativeName[Object.keys(country.name.nativeName)[0]].common}
+                            {!country.name.nativeName && 'Not Available'}
+                        </Typography>
                     </Box>
                     <Box>
                         <Typography variant="body7" component='span' sx={{fontSize: [14, 16]}}>Population: </Typography>
@@ -43,11 +43,16 @@ export default function SingleCountryLayout({country, allBorders}) {
                     </Box>
                     <Box>
                         <Typography variant="body7" component='span' sx={{fontSize: [14, 16]}}>Currency: </Typography>
-                        <Typography component='span' variant="body6" sx={{fontSize: [14, 16]}}>{country.currencies[theCurrency].name}</Typography>
+                        <Typography component='span' variant="body6" sx={{fontSize: [14, 16]}}>
+                            {country.currencies && country.currencies[Object.keys(country.currencies)[0]].name}
+                            {!country.currencies && 'Not Available'}
+                        </Typography>
                     </Box>
                     <Box>
                         <Typography variant="body7" component='span' sx={{fontSize: [14, 16]}}>Languages: </Typography>
-                        <Typography component='span' variant="body6" sx={{fontSize: [14, 16]}}>{Object.values(country.languages).join(', ')}</Typography>
+                        <Typography component='span' variant="body6" sx={{fontSize: [14, 16]}}>
+                            {country.languages ? Object.values(country.languages).join(', ') : 'Not Available'}
+                        </Typography>
                     </Box>
                 </Grid>
 
