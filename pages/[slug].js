@@ -36,14 +36,14 @@ export const getStaticProps = async ({params}) => {
     .filter(country => country.name.common.toLowerCase() === countryName)
     .map(country => {
         return { 
-            name: country.name ? country.name : 'Not available', 
+            name: country.name ? country.name : 'Not available',
             population: country.population ? country.population : 'Not available',
             region: country.region ? country.region : 'Not available',
             subregion: country.subregion ? country.subregion : 'Not available',
-            languages: country.languages ? country.languages : 'Not available',
+            languages: country.languages ? country.languages : null,
             tld: country.tld ? country.tld : 'Not available',
-            currencies: country.currencies ? country.currencies : 'Not available',
-            capital: country.capital ? country.capital : null,
+            currencies: country.currencies ? country.currencies : null,
+            capital: country.capital ? country.capital : 'Not available',
             flags: country.flags ? country.flags : 'Not available',
             borders: country.borders ? country.borders : null
         }
