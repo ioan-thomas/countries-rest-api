@@ -61,7 +61,7 @@ export default function Country({relData, countryBorders}) {
     const [country] = relData
 
     return (
-            <Container maxWidth='lg'>
+            <Container maxWidth='lg' component='main'>
                 <Link href={'/'}><Button variant="contained" color="primary" sx={{margin: '40px 0 64px 0', padding: '6px 23px', display: 'block', '&:hover':{backgroundColor: theme.palette.hoverColor.primary, boxShadow: 'none'}, boxShadow: theme.palette.boxShadow.primary}}>
                     <Box sx={{display: 'flex', gap: 1}}>
                         <KeyboardBackspaceIcon fontSize="small"/>

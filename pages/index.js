@@ -57,7 +57,7 @@ export default function Home({countries, countryBorders}) {
 	
 	
 	return (
-		<Container maxWidth='lg'>
+		<Container maxWidth='lg' component='main'>
 			<Container sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', margin: ['24px 0 32px 0', '48px auto']}}>
 				<SearchField updateSearchCriteria={updateSearchCriteria}/>
 				<Filter countries={countries} changeFilter={changeFilter}/>
