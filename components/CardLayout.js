@@ -27,11 +27,11 @@ const Cards = ({countries, filterRegion}) =>{
                 {filteredCountries.map(country => (
                     <Grid item xs={12} sm={6} md={4} lg={3}key={country.name}>
                             <OneCard 
-                            name={country.name || 'none listed'}
-                            population={country.population || 'none listed'}
-                            region={country.region || 'none listed'}
-                            capital={country.capital || 'none listed'}
-                            flags={country.flags || 'none listed'}
+                            name={country.name || 'Not Available'}
+                            population={country.population || 'Not Available'}
+                            region={country.region || 'Not Available'}
+                            capital={country.capital || 'Not Available'}
+                            flags={country.flags || 'Not Available'}
                             />
                     </Grid>
                 ))}
