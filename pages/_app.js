@@ -24,8 +24,7 @@ export default function MyApp(props) {
 
 	
 	  const theme = React.useMemo(
-		() =>
-		  createTheme(getDesignTokens(mode)),
+		() => createTheme(getDesignTokens(mode)),
 		[mode],
 	  );
 
