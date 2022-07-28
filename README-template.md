@@ -8,16 +8,16 @@
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-    - [Implementing Static-Site Generation (SSG)](#implementing-static-site-generation-ssg)
+    - [Static-Site Generation (SSG)](#static-site-generation-ssg)
     - [Incremental Static Regeneration (ISR)](#incremental-static-regeneration-isr)
     - [Routing in Next.js](#routing-in-nextjs)
     - [Passing props from getStaticPaths() to getStaticProps()](#passing-props-from-getstaticpaths-to-getstaticprops)
     - [Using Context with Next.js Dynamic Routes](#using-context-with-nextjs-dynamic-routes)
-    - [MaterialUI and its Pitfalls](#materialui-and-its-pitfalls)
+    - [Working with MaterialUI](#working-with-materialui)
     - [The React useMemo Hook ](#the-react-usememo-hook)
-    - [Working with images](#working-with-images)
-    - [Implementing Filtering in REACT](#implementing-filtering-in-react)
-    - [Implementing Searching in REACT](#implementing-searching-in-react)
+    - [Working with images and LCP](#working-with-images-and-lcp)
+    - [Implementing Filtering in React](#implementing-filtering-in-react) 
+    - [Implementing Searching in React](#implementing-searching-in-react)
     - [Debouncing and Throttling](#debouncing-and-throttling)
     - [The Pros and Cons of Lifting State](#the-pros-and-cons-of-lifting-state)
     - [Fetching Only the Required Information](#fetching-only-the-required-information)
@@ -51,7 +51,7 @@
 
 ### What I learned
 
-###### Implementing Static-Site Generation (SSG)
+##### Static-Site Generation (SSG)
 
 I learned that there are many benefits to using SSG, and that implementing SSG with Next.js is very straight forward. The `getStaticProps` async function that comes out of the box and is used in a page like so: 
 
@@ -72,8 +72,9 @@ Exporting the function from a page will allow Next.js to pre-render the page at 
 
 Those returned props are then passed to the page component via the prop object.
 
+<br>
 
-###### Incremental Static Regeneration (ISR)
+##### Incremental Static Regeneration (ISR)
 
 I learned that in addition to SSG, ISR adds the benefit of re-hydrating pages, i.e. updating static-pages after they've been built. 
 
@@ -103,8 +104,9 @@ Any requests to the page after the initial request and before 250 seconds are al
 - Next.js triggers a regeneration of the page in the background.
 - Once the page generates successfully, Next.js will invalidate the cache and show the updated page. If the background regeneration fails, the old page would still be unaltered, ready for the next user who visits the page.
 
+<br>
 
-###### Routing in Next.js
+##### Routing in Next.js
 
 As with many things, Next.js makes routing in React very easy. It's as simple as placing a file in the `/pages` directory.
 
@@ -149,8 +151,9 @@ As you can see in the example above, the paths array contains two objects, one w
 
 For bigger applications (such as an e-commerce store with lots of staic pages that depend on data), this can be set to true and the user could see a skeleton component or a loading spinner when they request a page that hasn't been generated yet. After `getStaticProps` has finished, the page will be rendered with the requested data (when paired with ISR).
 
+<br>
 
-###### Passing props from `getStaticPaths` to `getStaticProps`
+##### Passing props from the getStaticPaths function to the getStaticProps function
 
 In the code snippet below, I am using the `getStaticProps` to fetch data from an API endpoint on the server and then returning that data via props to the `/[slug]` page.
 
@@ -198,10 +201,11 @@ At first, I created the object on the server when the data was fetched for the h
 
 I saw that when a country name was entered in the URL bar, and on reload, the context object was being cleared. At the time, I did had not thought about the difference between development and production fetching with Next.js, and thus, I switched to fetching the all of the country's again. While this doesn't necessarily slow the build-time as the application currently is, if the application were to scale then I would have to look into adopting my orignal solution as well as exploring some others. My original solution would have worked as the data is already fetched when the user is interacting with the page, meaning, there would not be a case where the data is not available.
 
+<br>
 
-###### Using Context with Next.js Dynamic Routes
+##### Using Context with Next.js Dynamic Routes
 
-Using REACT's context API with Next.js' dynamic routes was something that took me a while to figure out as there was not a lot of information readily available to solve my use case. 
+Using React's context API with Next.js' dynamic routes was something that took me a while to figure out as there was not a lot of information readily available to solve my use case. 
 
 I found a [stackoverflow solution](https://stackoverflow.com/questions/61927604/pass-custom-prop-or-data-to-next-js-link-component) that describes passing props via Next.js' `<Link />` component: 
 
@@ -213,47 +217,191 @@ I found a [stackoverflow solution](https://stackoverflow.com/questions/61927604/
 </Link>
 ```
 
+<br>
 
-
-
-
-###### MaterialUI and its Pitfalls
+##### Working with MaterialUI
 I learned that there are advantages to using MateralUI over traditional CSS. The biggest would be that components are pre-made and take little-to-no effort to use. 
 
-I also learned to implement theme context using MaterialUI's built in theme components, as well as the REACT context API. ...
+I learned to implement theme context using MaterialUI's built in theme components, as well as the React context API. Here are the steps I took:
+
+1. I created a function that toggles between styles based on the argument. 
+ 
+ ```js
+ export const getDesignTokens = (mode) => ({
+	palette: {
+		mode,
+		...mode === 'light'
+		? {
+			background:{
+				default: 'hsl(0, 0%, 98%)'
+			},
+			primary: {
+				main: 'hsl(0, 0%, 100%)',
+			},
+			// more light theme styles are here but removed for readability
+		}
+		: {
+			background:{
+				default: '#1f2c36'
+			},
+			primary: {
+				main: '#2b3844',
+			},
+			// more dark theme styles are here but removed for readability
+		}
+	}, 
+	//  typography styles that remained the same for both modes are here but removed for demo
+})
+ ```
+
+The `getDesignTokens` function above takes `mode` as a parameter, whereby the value 'light' or 'dark' will be passed as an argument to show the styles for the selected mode.
+
+2. In `_app.js` I created some state to change and contain the theme information i.e. what mode is selected. This by default is set to 'dark'. This was simply due to my personal preference.
+
+3. Still in `_app.js`, I created the function `toggleColorMode`, to toggle between theme modes. The mode is set based upon the previous mode, ie., if the mode is 'light', then the function will set the mode to be 'dark' and vice versa. Here is that function: 
+
+```js
+const toggleColorMode = () => {
+			setMode(prevMode => prevMode === 'light' ? 'dark' : 'light');
+		  }
+```
+
+4. Remaining in `_app.js`, I used Material UI's `createTheme` to create a theme object based upon the mode selected. I passed `createTheme` the returned value from my previously made `getDesignTokens` function, passing in the value of the `mode` state:
+
+```js
+const theme = React.useMemo(
+		() =>
+		  createTheme(getDesignTokens(mode)),
+		[mode],
+	  );
+```
+
+As the theme mode is assigned to React's state object, the component is re run when the mode state changes, causing a new theme object to be created and the application's styles to be changed.
+
+5. Using Material UI's `ThemeProvider` component, the theme was injected into the application. E.g.
+
+```js
+return (
+		<BorderContextProvider>
+				<ThemeProvider theme={theme}>
+					<Head>
+						<meta name="viewport"
+							content="initial-scale=1, width=device-width" />
+						<title>Where in the world?</title>
+					</Head>
+					<CssBaseline />
+						<Navbar changeMode={toggleColorMode}/>
+					<Component {...pageProps} />
+				</ThemeProvider>
+		</BorderContextProvider>
+	);
+```
+
+6. I accessed the Material UI's (MUI's) theme object that I modified, via MUI's `useTheme` hook. I could then access the properties within that object.
+
+After using the theme, I discovered that some styles could be accessed by simply adding a string of the path to access a specfic property e.g. the backgroundColor style property:
+
+```js
+sx={{ maxWidth: 345, minHeight: '336px', 
+        transition: 'all 0.3s ease', '&:hover':{transform: 'rotate(3deg)', cursor: 'pointer', backgroundColor: 'hoverColor.primary'}, backgroundColor: 'primary.main',
+        boxShadow: theme.palette.boxShadow.primary}}>
+```
+
+However, some custom styling that I added in addition to MUI's default style properties required me to access them via JavaScript e.g, the boxShadow property in the above example. 
+
+<br>
 
 ###### The React useMemo Hook 
 
-###### Working with Images
-Fallback images ...
-Prioritising images ...
+This project was my first time learning a lot of lessons, and one of those was when to use React's `useMemo` hook. 
 
-###### Implementing Filtering in REACT
+I learned that the hook 'Memo' in `useMemo` stands for memoization, which is the idea of caching a value so you don't have to re-compute it everytime a component re-renders, for example, when state changes. 
 
-###### Implementing Searching in REACT
+In the project, I used this hook when creating the theme:
 
-###### Debouncing and Throttling
+```js
+const theme = React.useMemo(
+		() => createTheme(getDesignTokens(mode)),
+		[mode],
+	  );
+```
 
-###### The Pros and Cons of Lifting State
+The returned value from this hook is the theme value from the `getDesignTokens` function. To read more about this, take a look at the [working with MaterialUI](#working-with-materialui) section where I talk about creating the theme. 
 
-###### Fetching Only the Required Information
+This value is then cached, not to rerun on every render, and only runs again when the value of `mode` changes (in the dependency array). 
 
-###### Adding a Custom 404 Page with Next.js
+<br>
+
+##### Working with Images and LCP
+
+This project taught me about working with images in not only Next.js but in general web development too.
+
+One thing I learned was the ability to add fallback images to a source property:
+
+```js
+<Image
+  component="img"
+  height="160" 
+  width='264'
+  src={flags.svg || flags.png}
+  alt={name + ' flag'}
+  layout="responsive"
+  objectFit='cover'
+  priority={flags.svg === 'https://flagcdn.com/ge.svg' ? true : false}
+/>
+```
+
+As you can see in the example above, the `src` property will use the value from `flags.svg` (which is a link for an image returned from the Rest API), but will default to the value from `flags.png` if an error occurs with `flags.svg` or in the event it's unavailable. 
+
+Given that I opted to use [Static-Site Generation](#implementing-static-site-generation-ssg) however, this will only be a concern during build-time.
+
+I also learned about prioritising images and the Largest Contentful Paint (LCP).
+
+The LCP is a metric used to represent how quickly from when the user initiates loading the page until the largest image (or text) is rendered within the viewport. This is an important metric as it can be the deciding factor between a sluggish website and a fast performing website.
+
+
+
+<br>
+
+##### Implementing Filtering in React
+
+<br>
+
+##### Implementing Searching in React
+
+<br>
+
+##### Debouncing and Throttling
+
+<br>
+
+##### The Pros and Cons of Lifting State
+
+<br>
+
+##### Fetching Only the Required Information
+
+<br>
+
+##### Adding a Custom 404 Page with Next.js
+
+<br>
 
 ### Continued development
-It is important in future that I evaluate the technologies I am using in my projects as there many drawbacks to some libraries and frameworks, as I found with MaterialUI. For example, was I to start this project again from scratch, I would have opted to use a framework like [Tailwind CSS](https://tailwindcss.com/) or [Styled Components](https://styled-components.com/).
-
 Here are some areas I want to continue focusing on in future projects:
 
+It is important in future that I evaluate the technologies I am using in my projects as there many drawbacks to some libraries and frameworks, as I found with MaterialUI. For example, was I to start this project again from scratch, I would have opted to use a framework like [Tailwind CSS](https://tailwindcss.com/) or [Styled Components](https://styled-components.com/) instead of MaterialUI.
+
+I would like to delve deeper into improving website performance as this will not only aid in future projects but also for when I am working in a professional setting, allowing me to   
 #### Returning to this Project
 
 When I have continued my development, I would like to return to this project to implement the following: 
 
-- I would like to alter the way in which my project consumes the theme context. To implement MateralUI's theme context, in the way in which the documentation states, was a little hard for me to grasp given I do not know the ins and outs of the component library yet. I I would like to take the time to get more familiar with the framework and 
-...
+- I would like to alter the way in which my project consumes the theme context. To implement MateralUI's theme context, in the way in which the documentation states, was a little hard for me to grasp given I do not know the ins and outs of the component library yet. I would like to take the time to get more familiar with the framework and alter the code to align the project with MaterialUI's best practices. 
 - I would like to persist the user's current filter settings to local storage, this way, when the user returns to the homepage from a filtered homepage, they will continue to see their results.
 - I would like to add tests to any future components that I create, using a testing framework such as Jest or Mocha. This will ensure that bugs and errors are minimised as well as building my knowledge of testing.
 - I would like to add end-to-end testing too for the same reasons as the point above.
+- After having researched improving website performance, I would like to improve the website's Google Lighthouse performance score. I would look at adding lazy loading to the card components using the browser's Intersection Observer API, loading the components on demand. 
 
 ### Useful resources
 
