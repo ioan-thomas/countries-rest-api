@@ -16,7 +16,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 export default function MyApp(props) {
 	const { Component,  pageProps } = props;
-	const [mode, setMode] = React.useState('light')
+	const [mode, setMode] = React.useState('dark')
 
 	const toggleColorMode = () => {
 			setMode(prevMode => prevMode === 'light' ? 'dark' : 'light');
@@ -24,8 +24,7 @@ export default function MyApp(props) {
 
 	
 	  const theme = React.useMemo(
-		() =>
-		  createTheme(getDesignTokens(mode)),
+		() => createTheme(getDesignTokens(mode)),
 		[mode],
 	  );
 

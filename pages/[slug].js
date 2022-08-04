@@ -8,7 +8,7 @@ import SingleCountryLayout from "../components/SingleCountryLayout";
 
 // react/next
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const getStaticPaths = async () => {
     const res = await fetch('https://restcountries.com/v3.1/all');
@@ -59,15 +59,22 @@ export const getStaticProps = async ({params}) => {
 export default function Country({relData, countryBorders}) {
     const theme = useTheme()
     const [country] = relData
+    const router = useRouter()
 
     return (
-            <Container maxWidth='lg'>
-                <Link href={'/'}><Button variant="contained" color="primary" sx={{margin: '40px 0 64px 0', padding: '6px 23px', display: 'block', '&:hover':{backgroundColor: theme.palette.hoverColor.primary, boxShadow: 'none'}, boxShadow: theme.palette.boxShadow.primary}}>
+            <Container maxWidth='lg' component='main'>
+                <Button variant="contained" color="primary" 
+                    sx={{margin: '40px 0 64px 0', padding: '6px 23px', display: 'block', 
+                        '&:hover':{backgroundColor: theme.palette.hoverColor.primary, boxShadow: 'none'}, 
+                        boxShadow: theme.palette.boxShadow.primary
+                    }}
+                    onClick={() => router.back()}
+                    >
                     <Box sx={{display: 'flex', gap: 1}}>
                         <KeyboardBackspaceIcon fontSize="small"/>
                         <Typography textTransform="capitalize" sx={{fontSize: '14px'}}>Back</Typography>
                     </Box>
-                </Button></Link>
+                </Button>
 
                 <Box component='div' sx={{display: 'flex', gap: '5vw', flexDirection: ['column', 'column', 'row'], justifyContent: 'center', alignItems: 'center'}}>
                     <Box style={{margin: ' 0px 0px 44px 0px'}}>
@@ -77,7 +84,6 @@ export default function Country({relData, countryBorders}) {
                         width={560}
                         />
                     </Box>
-                        
                     <SingleCountryLayout country={country} allBorders={countryBorders}/>
                 </Box>
             </Container>

@@ -42,7 +42,7 @@ const Filter = ({countries, changeFilter}) => {
                 boxShadow: theme.palette.boxShadow.boxShadow,  zIndex: 5, 
                 position: 'absolute', marginTop: '4px', WebkitUserSelect: 'none', userSelect: 'none'}}>
 
-                    <Box component='ul' sx={{listStyle: 'none'}}>
+                    <Box component='ul' role='list' sx={{listStyle: 'none'}}>
                         <Box component='li' key="all" onClick={() => handleClick('all')}
                                 sx={{marginBottom: '4px', fontWeight: '600', fontSize: 14, '&:hover':{fontWeight: '800', cursor: 'pointer'}}}>All</Box>
                                 

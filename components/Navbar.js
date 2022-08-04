@@ -8,7 +8,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 export function Navbar({changeMode}) {
     const theme = useTheme()
     return (
-        <AppBar position="sticky" sx={{backgroundColor: theme.palette.primary.main, boxShadow: theme.palette.boxShadow.primary}}>
+        <AppBar position="sticky" sx={{backgroundColor: theme.palette.primary.main, boxShadow: theme.palette.boxShadow.primary}} component="header">
             <Toolbar sx={{minHeight: '76px'}}>
 
                 <Container maxWidth='lg' sx={{display: 'flex', justifyContent: 'space-between'}}>
