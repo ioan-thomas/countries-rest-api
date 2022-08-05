@@ -47,8 +47,8 @@ export default function Home({countries, countryBorders}) {
 		setFilterRegion(region);
     }
 
-	const updateSearchCriteria = val => {
-		setSearchCriteria(val);
+	const updateSearchCriteria = criteria => {
+		setSearchCriteria(criteria);
 	}
 
 	useEffect(() => {
