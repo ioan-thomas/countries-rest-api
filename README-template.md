@@ -415,6 +415,8 @@ Here are some areas I want to continue focusing on in future projects:
 It is important in future that I evaluate the technologies I am using in my projects as there many drawbacks to some libraries and frameworks, as I found with MaterialUI. For example, was I to start this project again from scratch, I would have opted to use a framework like [Tailwind CSS](https://tailwindcss.com/) or [Styled Components](https://styled-components.com/) instead of MaterialUI.
 
 I would like to delve deeper into improving website performance as this will not only aid in future projects but also for when I am working in a professional setting, allowing me to contribute more to my future development teams.
+
+I would like to begin implementing animations via a 3rd party animation library as it can make a website look and *feel* more professional.
 #### Returning to this Project
 
 When I have continued my development, I would like to return to this project to implement the following: 
@@ -424,6 +426,7 @@ When I have continued my development, I would like to return to this project to 
 - I would like to add tests to any future components that I create, using a testing framework such as Jest or Mocha. This will ensure that bugs and errors are minimised as well as building my knowledge of testing.
 - I would like to add end-to-end testing too for the same reasons as the point above.
 - After researching improving website performance, I would like to improve the website's Google Lighthouse performance score. I would look at adding lazy loading to the card components using the browser's Intersection Observer API, loading the components on demand. 
+
 
 ### Useful resources
 
