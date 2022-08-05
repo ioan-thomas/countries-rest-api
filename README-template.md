@@ -359,11 +359,33 @@ I also learned about prioritising images and the Largest Contentful Paint (LCP).
 
 The LCP is a metric used to represent how quickly from when the user initiates loading the page until the largest image (or text) is rendered within the viewport. This is an important metric as it can be the deciding factor between a sluggish website and a fast performing website.
 
-
-
 <br>
 
 ##### Implementing Filtering in React
+
+Filtering in Reat was something I had done in a previous project so I followed the same principles. 
+
+It is relatively simple in practise: 
+
+```js
+let filteredCountries = countries.filter(country => {
+            switch (filterRegion) {
+                case 'all':
+                    return true;
+                case 'Africa':
+                case 'Americas':
+                case 'Antarctic':
+                case 'Asia':
+                case 'Europe':
+                case 'Oceania':
+                    return country.region === filterRegion
+                default:
+                    return true
+            }
+        })
+```
+
+The **countries** array in the example is one containing all of the countries objects. The expression - **filterRegion** - is returned from the [index page](/pages/index.js). In the index page, **filterRegion** is a piece of state representing the users input from the [Filter](/components/Filter.js) compoment - which is the dropdown allowing users to select a region to filter by.
 
 <br>
 
