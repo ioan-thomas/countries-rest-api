@@ -14,7 +14,7 @@
     - [Passing props from getStaticPaths() to getStaticProps()](#passing-props-from-getstaticpaths-to-getstaticprops)
     - [Using Context with Next.js Dynamic Routes](#using-context-with-nextjs-dynamic-routes)
     - [Working with MaterialUI](#working-with-materialui)
-    - [The React useMemo Hook ](#the-react-usememo-hook)
+    - [React's useMemo Hook ](#the-react-usememo-hook)
     - [Working with images and LCP](#working-with-images-and-lcp)
     - [Implementing Filtering in React](#implementing-filtering-in-react) 
     - [Implementing Searching in React](#implementing-searching-in-react)
@@ -41,7 +41,7 @@
 
 ### Built with
 
-- Semantic HTML & CSS
+- Semantic HTML & modern CSS
 - [REST API](https://restcountries.com/)
 - Flexbox
 - Mobile-first workflow
@@ -145,7 +145,7 @@ return {
 }
 ```
 
-As you can see in the example above, the paths array contains two objects, one with the key-value pair `slug: "Greece"` and the other key-value pair being `slug: "France"`. These key-vale pairs specify the route parameters. This is why the key in this object matches the file name i.e. `[slug],js` as this tells Next.js what paths to generate.
+As you can see in the example above, the paths array contains two objects, one with the key-value pair `slug: "Greece"` and the other key-value pair being `slug: "France"`. These key-vale pairs specify the route parameters. This is why the key in this object matches the file name i.e. `/[slug].js` as this tells Next.js what paths to generate.
 
 4. Lastly I set the fallback parameter to false. I learned that by setting this to false, the user is redirected to the 404 page a route is invalid. 
 
@@ -311,7 +311,7 @@ However, some custom styling that I added in addition to MUI's default style pro
 
 <br>
 
-###### The React useMemo Hook 
+###### React's useMemo Hook 
 
 This project was my first time learning a lot of lessons, and one of those was when to use React's `useMemo` hook. 
 
@@ -351,7 +351,7 @@ One thing I learned was the ability to add fallback images to a source property:
 />
 ```
 
-As you can see in the example above, the `src` property will use the value from `flags.svg` (which is a link for an image returned from the Rest API), but will default to the value from `flags.png` if an error occurs with `flags.svg` or in the event it's unavailable. 
+As you can see in the example above, the **src** property will use the value from `flags.svg` (which is a link for an image returned from the Rest API), but will default to the value from `flags.png` if an error occurs with `flags.svg` or in the event it's unavailable. 
 
 Given that I opted to use [Static-Site Generation](#implementing-static-site-generation-ssg) however, this will only be a concern during build-time.
 
@@ -390,6 +390,11 @@ The **countries** array in the example is one containing all of the countries ob
 <br>
 
 ##### Implementing Searching in React
+
+Similar to [implementing filtering in React](#implementing-filtering-in-react), implementing searching functionality was something I had done in a follow-along project. However, this was the first project that I had to implement such functionality by myself. 
+
+I chose to make the search functionality work hand-in-hand with the filtering functionality, allowing for search results to be filtered and vice versa. 
+
 
 <br>
 
