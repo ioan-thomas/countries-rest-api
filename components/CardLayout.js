@@ -25,7 +25,7 @@ const Cards = ({countries, filterRegion}) =>{
 
             {filteredCountries.length > 0 && <Grid container spacing={5} >
                 {filteredCountries.map(country => (
-                    <Grid item xs={12} sm={6} md={4} lg={3}key={country.name}>
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={country.name}>
                             <OneCard 
                             name={country.name || 'Not Available'}
                             population={country.population || 'Not Available'}
