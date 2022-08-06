@@ -353,7 +353,7 @@ One thing I learned was the ability to add fallback images to a source property:
 
 As you can see in the example above, the **src** property will use the value from `flags.svg` (which is a link for an image returned from the Rest API), but will default to the value from `flags.png` if an error occurs with `flags.svg` or in the event it's unavailable. 
 
-Given that I opted to use [Static-Site Generation](#implementing-static-site-generation-ssg) however, this will only be a concern during build-time.
+Given that I opted to use [Static-Site Generation](#static-site-generation-ssg), this will only be a concern during build-time.
 
 I also learned about prioritising images and the Largest Contentful Paint (LCP).
 
