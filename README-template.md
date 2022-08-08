@@ -391,9 +391,41 @@ The **countries** array in the example is one containing all of the countries ob
 
 ##### Implementing Searching in React
 
-Similar to [implementing filtering in React](#implementing-filtering-in-react), implementing searching functionality was something I had done in a follow-along project. However, this was the first project that I had to implement such functionality by myself. 
+Similar to [implementing filtering in React](#implementing-filtering-in-react), implementing search functionality was something I had done in a previous follow-along project. However, this was the first project that I had to implement such functionality by myself. 
 
-I chose to make the search functionality work hand-in-hand with the filtering functionality, allowing for search results to be filtered and vice versa. 
+I chose to make the search functionality work hand-in-hand with the filtering functionality - allowing for search results to be filtered and vice versa. This makes for a better UX as users can easier find countries they are looking for.
+
+To begin with, I created some state and an input field. This input field is bound to the state. When the input is updated, the state is too. 
+
+Below is the code with some functionality removed for readability. Please see the [Debouncing and Throttling](#debouncing-and-throttling) section for the full example.
+
+```js
+const [inputText, setInputText] = useState('');
+	const theme = useTheme();
+
+
+	const updateInput = eventVal => {
+		setInputText(eventVal);
+	}
+
+    return ( 
+		<Box sx={{ 
+              // styling removed for readability
+    }}/>
+
+				<Box
+					component="input"
+					placeholder='Search for a country...'
+					sx={{ 
+                    // styling removed for readability
+          }}
+					onChange={e => updateInput(e.target.value)}
+					/>
+		</Box>
+    )
+```
+
+When there is a change in the input, the `onChange` function is fired, passing in the value from the input to `updateInput`. The `updateInput` function updates the `inputText` state to the value from the input. 
 
 
 <br>
