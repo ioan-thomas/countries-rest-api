@@ -13,7 +13,7 @@
     - [Routing in Next.js](#routing-in-nextjs)
     - [Passing props from getStaticPaths() to getStaticProps()](#passing-props-from-getstaticpaths-to-getstaticprops)
     - [Using Context with Next.js Dynamic Routes](#using-context-with-nextjs-dynamic-routes)
-    - [Working with MaterialUI](#working-with-materialui)
+    - [Working with MaterialUI](#working-with-materialui-(mui))
     - [React's useMemo Hook ](#the-react-usememo-hook)
     - [Working with images and LCP](#working-with-images-and-lcp)
     - [Implementing Filtering in React](#implementing-filtering-in-react) 
@@ -147,7 +147,7 @@ return {
 
 As you can see in the example above, the paths array contains two objects, one with the key-value pair `slug: "Greece"` and the other key-value pair being `slug: "France"`. These key-vale pairs specify the route parameters. This is why the key in this object matches the file name i.e. `/[slug].js` as this tells Next.js what paths to generate.
 
-4. Lastly I set the fallback parameter to false. I learned that by setting this to false, the user is redirected to the 404 page a route is invalid. 
+4. Lastly, I set the fallback parameter to false. I learned that by setting this to false, the user is redirected to the 404 page a route is invalid. 
 
 For bigger applications (such as an e-commerce store with lots of staic pages that depend on data), this can be set to true and the user could see a skeleton component or a loading spinner when they request a page that hasn't been generated yet. After `getStaticProps` has finished, the page will be rendered with the requested data (when paired with ISR).
 
@@ -219,10 +219,10 @@ I found a [stackoverflow solution](https://stackoverflow.com/questions/61927604/
 
 <br>
 
-##### Working with MaterialUI
-I learned that there are advantages to using MateralUI over traditional CSS. The biggest would be that components are pre-made and take little-to-no effort to use. 
+##### Working with MaterialUI (MUI)
+I learned that there are advantages to using MUI over traditional CSS. The biggest would be that components are pre-made and take little-to-no effort to use. 
 
-I learned to implement theme context using MaterialUI's built in theme components, as well as the React context API. Here are the steps I took:
+I learned to implement theme context using MUI's built in theme components, as well as the React context API. Here are the steps I took:
 
 1. I created a function that toggles between styles based on the argument. 
  
@@ -250,7 +250,7 @@ I learned to implement theme context using MaterialUI's built in theme component
 			// more dark theme styles are here but removed for readability
 		}
 	}, 
-	//  typography styles that remained the same for both modes are here but removed for demo
+	//  typography styles are here but removed for example
 })
  ```
 
@@ -266,7 +266,7 @@ const toggleColorMode = () => {
 		  }
 ```
 
-4. Remaining in `_app.js`, I used Material UI's `createTheme` to create a theme object based upon the mode selected. I passed `createTheme` the returned value from my previously made `getDesignTokens` function, passing in the value of the `mode` state:
+4. Remaining in `_app.js`, I used MUI's `createTheme` to create a theme object based upon the mode selected. I passed `createTheme` the returned value from my previously made `getDesignTokens` function, passing in the value of the `mode` state:
 
 ```js
 const theme = React.useMemo(
@@ -278,7 +278,7 @@ const theme = React.useMemo(
 
 As the theme mode is assigned to React's state object, the component is re run when the mode state changes, causing a new theme object to be created and the application's styles to be changed.
 
-5. Using Material UI's `ThemeProvider` component, the theme was injected into the application. E.g.
+5. Using MUI's `ThemeProvider` component, the theme was injected into the application. E.g.
 
 ```js
 return (
@@ -297,7 +297,7 @@ return (
 	);
 ```
 
-6. I accessed the Material UI's (MUI's) theme object that I modified, via MUI's `useTheme` hook. I could then access the properties within that object.
+6. I accessed the MUI's theme object that I modified, via MUI's `useTheme` hook. I could then access the properties within that object.
 
 After using the theme, I discovered that some styles could be accessed by simply adding a string of the path to access a specfic property e.g. the backgroundColor style property:
 
@@ -425,7 +425,7 @@ const [inputText, setInputText] = useState('');
     )
 ```
 
-When there is a change in the input, the `onChange` function is fired, passing in the value from the input to `updateInput`. The `updateInput` function updates the `inputText` state to the value from the input. 
+When there is a change in the input, the `onChange` function is fired, passing in the value from the input, to `updateInput`. The `updateInput` function updates the `inputText` state, changing its value to the same value from the input. 
 
 
 <br>
