@@ -110,9 +110,9 @@ Any requests to the page after the initial request and before 250 seconds are al
 
 As with many things, Next.js makes routing in React very easy. It's as simple as placing a file in the `/pages` directory.
 
-I learned that dynamic routes can be created for pages paths that depend on external data e.g. in this project's case, I created a page for every country that is fetched from the API. To do this:
+I learned that dynamic routes can be created for pages whose paths depend on external data e.g. in this project's case, I created a page for every country that is fetched from the API. To do this:
 
- 1. I added `/[slug].js` to the `/pages` directory. This will give each page the path format /[slug], the forward slash indicates the homepage. 
+ 1. I added `/[slug].js` to the `/pages` directory. This will give each page the path format **/[slug]**, the forward slash indicates the homepage. 
  2. I then, exported an async function called `getStaticPaths`: 
  
  ```js 
