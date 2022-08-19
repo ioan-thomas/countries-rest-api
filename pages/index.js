@@ -17,7 +17,7 @@ export const getStaticProps = async () => {
 	
 	const countryBorders = {};
 
-	const relData = data.map(country => {
+	const countries = data.map(country => {
 		countryBorders[country.cca3] = country.name.common;
 		return { name: country.name.common, 
 		population: country.population,
@@ -28,13 +28,14 @@ export const getStaticProps = async () => {
 	})
 
 	return {
-		props: { countries: relData, countryBorders},
+		props: { countries, countryBorders},
         revalidate: 250
 	}
 }
 
 export default function Home({countries, countryBorders}) {
 	const {addBorders} = useContext(BorderContext);
+	// state is immutable
 	const [filterRegion, setFilterRegion] = useState('all');
 	const [searchCriteria, setSearchCriteria] = useState('')
 	const [countriesToDisplay, setCountriesToDisplay] = useState(countries)
