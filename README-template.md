@@ -13,8 +13,8 @@
     - [Routing in Next.js](#routing-in-nextjs)
     - [Passing props from getStaticPaths() to getStaticProps()](#passing-props-from-getstaticpaths-to-getstaticprops)
     - [Using Context with Next.js Dynamic Routes](#using-context-with-nextjs-dynamic-routes)
-    - [Working with MaterialUI](#working-with-materialui)
-    - [The React useMemo Hook ](#the-react-usememo-hook)
+    - [Working with MaterialUI](#working-with-materialui-(mui))
+    - [React's useMemo Hook ](#the-react-usememo-hook)
     - [Working with images and LCP](#working-with-images-and-lcp)
     - [Implementing Filtering in React](#implementing-filtering-in-react) 
     - [Implementing Searching in React](#implementing-searching-in-react)
@@ -41,7 +41,7 @@
 
 ### Built with
 
-- Semantic HTML & CSS
+- Semantic HTML & modern CSS
 - [REST API](https://restcountries.com/)
 - Flexbox
 - Mobile-first workflow
@@ -110,9 +110,9 @@ Any requests to the page after the initial request and before 250 seconds are al
 
 As with many things, Next.js makes routing in React very easy. It's as simple as placing a file in the `/pages` directory.
 
-I learned that dynamic routes can be created for pages paths that depend on external data e.g. in this project's case, I created a page for every country that is fetched from the API. To do this:
+I learned that dynamic routes can be created for pages whose paths depend on external data e.g. in this project's case, I created a page for every country that is fetched from the API. To do this:
 
- 1. I added `/[slug].js` to the `/pages` directory. This will give each page the path format /[slug], the forward slash indicates the homepage. 
+ 1. I added `/[slug].js` to the `/pages` directory. This will give each page the path format **/[slug]**, the forward slash indicates the homepage. 
  2. I then, exported an async function called `getStaticPaths`: 
  
  ```js 
@@ -145,9 +145,9 @@ return {
 }
 ```
 
-As you can see in the example above, the paths array contains two objects, one with the key-value pair `slug: "Greece"` and the other key-value pair being `slug: "France"`. These key-vale pairs specify the route parameters. This is why the key in this object matches the file name i.e. `[slug],js` as this tells Next.js what paths to generate.
+As you can see in the example above, the paths array contains two objects, one with the key-value pair `slug: "Greece"` and the other key-value pair being `slug: "France"`. These key-vale pairs specify the route parameters. This is why the key in this object matches the file name i.e. `/[slug].js` as this tells Next.js what paths to generate.
 
-4. Lastly I set the fallback parameter to false. I learned that by setting this to false, the user is redirected to the 404 page a route is invalid. 
+4. Lastly, I set the fallback parameter to false. I learned that by setting this to false, the user is redirected to the 404 page a route is invalid. 
 
 For bigger applications (such as an e-commerce store with lots of staic pages that depend on data), this can be set to true and the user could see a skeleton component or a loading spinner when they request a page that hasn't been generated yet. After `getStaticProps` has finished, the page will be rendered with the requested data (when paired with ISR).
 
@@ -193,7 +193,7 @@ borders: [
 ]
 ```
 
-I noticed that the letters correspond to a code, known as a cca3 country code, that was a another paramter available from the API JSON object via `country.cca3`.
+I noticed that the letters correspond to a code (known as a cca3 country code) that was another paramter available from the API JSON object via `country.cca3`.
 
 From the get-go, I had planned to create an object of all the possible cca3 and country name combinations, the cca3 code being the key and the country name being the value. 
 
@@ -219,10 +219,10 @@ I found a [stackoverflow solution](https://stackoverflow.com/questions/61927604/
 
 <br>
 
-##### Working with MaterialUI
-I learned that there are advantages to using MateralUI over traditional CSS. The biggest would be that components are pre-made and take little-to-no effort to use. 
+##### Working with MaterialUI (MUI)
+I learned that there are advantages to using MUI over traditional CSS. The biggest would be that components are pre-made and take little-to-no effort to use. 
 
-I learned to implement theme context using MaterialUI's built in theme components, as well as the React context API. Here are the steps I took:
+I learned to implement theme context using MUI's built in theme components, as well as the React context API. Here are the steps I took:
 
 1. I created a function that toggles between styles based on the argument. 
  
@@ -250,7 +250,7 @@ I learned to implement theme context using MaterialUI's built in theme component
 			// more dark theme styles are here but removed for readability
 		}
 	}, 
-	//  typography styles that remained the same for both modes are here but removed for demo
+	//  typography styles are here but removed for example
 })
  ```
 
@@ -266,7 +266,7 @@ const toggleColorMode = () => {
 		  }
 ```
 
-4. Remaining in `_app.js`, I used Material UI's `createTheme` to create a theme object based upon the mode selected. I passed `createTheme` the returned value from my previously made `getDesignTokens` function, passing in the value of the `mode` state:
+4. Remaining in `_app.js`, I used MUI's `createTheme` to create a theme object based upon the mode selected. I passed `createTheme` the returned value from my previously made `getDesignTokens` function, passing in the value of the `mode` state:
 
 ```js
 const theme = React.useMemo(
@@ -278,7 +278,7 @@ const theme = React.useMemo(
 
 As the theme mode is assigned to React's state object, the component is re run when the mode state changes, causing a new theme object to be created and the application's styles to be changed.
 
-5. Using Material UI's `ThemeProvider` component, the theme was injected into the application. E.g.
+5. Using MUI's `ThemeProvider` component, the theme was injected into the application. E.g.
 
 ```js
 return (
@@ -297,7 +297,7 @@ return (
 	);
 ```
 
-6. I accessed the Material UI's (MUI's) theme object that I modified, via MUI's `useTheme` hook. I could then access the properties within that object.
+6. I accessed the MUI's theme object that I modified, via MUI's `useTheme` hook. I could then access the properties within that object.
 
 After using the theme, I discovered that some styles could be accessed by simply adding a string of the path to access a specfic property e.g. the backgroundColor style property:
 
@@ -311,7 +311,7 @@ However, some custom styling that I added in addition to MUI's default style pro
 
 <br>
 
-###### The React useMemo Hook 
+###### React's useMemo Hook 
 
 This project was my first time learning a lot of lessons, and one of those was when to use React's `useMemo` hook. 
 
@@ -351,23 +351,82 @@ One thing I learned was the ability to add fallback images to a source property:
 />
 ```
 
-As you can see in the example above, the `src` property will use the value from `flags.svg` (which is a link for an image returned from the Rest API), but will default to the value from `flags.png` if an error occurs with `flags.svg` or in the event it's unavailable. 
+As you can see in the example above, the **src** property will use the value from `flags.svg` (which is a link for an image returned from the Rest API), but will default to the value from `flags.png` if an error occurs with `flags.svg` or in the event it's unavailable. 
 
-Given that I opted to use [Static-Site Generation](#implementing-static-site-generation-ssg) however, this will only be a concern during build-time.
+Given that I opted to use [Static-Site Generation](#static-site-generation-ssg), this will only be a concern during build-time.
 
 I also learned about prioritising images and the Largest Contentful Paint (LCP).
 
 The LCP is a metric used to represent how quickly from when the user initiates loading the page until the largest image (or text) is rendered within the viewport. This is an important metric as it can be the deciding factor between a sluggish website and a fast performing website.
 
-
-
 <br>
 
 ##### Implementing Filtering in React
 
+Filtering in Reat was something I had done in a previous project so I followed the same principles. 
+
+It is relatively simple in practise: 
+
+```js
+let filteredCountries = countries.filter(country => {
+            switch (filterRegion) {
+                case 'all':
+                    return true;
+                case 'Africa':
+                case 'Americas':
+                case 'Antarctic':
+                case 'Asia':
+                case 'Europe':
+                case 'Oceania':
+                    return country.region === filterRegion
+                default:
+                    return true
+            }
+        })
+```
+
+The **countries** array in the example is one containing all of the countries objects. The expression - **filterRegion** - is returned from the [index page](/pages/index.js). In the index page, **filterRegion** is a piece of state representing the users input from the [Filter](/components/Filter.js) compoment - which is the dropdown allowing users to select a region to filter by.
+
 <br>
 
 ##### Implementing Searching in React
+
+Similar to [implementing filtering in React](#implementing-filtering-in-react), implementing search functionality was something I had done in a previous follow-along project. However, this was the first project that I had to implement such functionality by myself. 
+
+I chose to make the search functionality work hand-in-hand with the filtering functionality - allowing for search results to be filtered and vice versa. This makes for a better UX as users can easier find countries they are looking for.
+
+To begin with, I created some state and an input field. This input field is bound to the state. When the input is updated, the state is too. 
+
+Below is the code with some functionality removed for readability. Please see the [Debouncing and Throttling](#debouncing-and-throttling) section for the full example.
+
+```js
+const [inputText, setInputText] = useState('');
+	const theme = useTheme();
+
+
+	const updateInput = eventVal => {
+		setInputText(eventVal);
+	}
+
+    return ( 
+		<Box sx={{ 
+              // styling removed for readability
+    }}/>
+
+				<Box
+					component="input"
+					placeholder='Search for a country...'
+					sx={{ 
+                    // styling removed for readability
+          }}
+					onChange={e => updateInput(e.target.value)}
+					/>
+		</Box>
+    )
+```
+
+When there is a change in the input, the `onChange` function is fired, passing in the value from the input, to `updateInput`. The `updateInput` function updates the `inputText` state, changing its value to the same value from the input. 
+
 
 <br>
 
@@ -392,7 +451,9 @@ Here are some areas I want to continue focusing on in future projects:
 
 It is important in future that I evaluate the technologies I am using in my projects as there many drawbacks to some libraries and frameworks, as I found with MaterialUI. For example, was I to start this project again from scratch, I would have opted to use a framework like [Tailwind CSS](https://tailwindcss.com/) or [Styled Components](https://styled-components.com/) instead of MaterialUI.
 
-I would like to delve deeper into improving website performance as this will not only aid in future projects but also for when I am working in a professional setting, allowing me to   
+I would like to delve deeper into improving website performance as this will not only aid in future projects but also for when I am working in a professional setting, allowing me to contribute more to my future development teams.
+
+I would like to begin implementing animations via a 3rd party animation library as it can make a website look and *feel* more professional.
 #### Returning to this Project
 
 When I have continued my development, I would like to return to this project to implement the following: 
@@ -401,7 +462,8 @@ When I have continued my development, I would like to return to this project to 
 - I would like to persist the user's current filter settings to local storage, this way, when the user returns to the homepage from a filtered homepage, they will continue to see their results.
 - I would like to add tests to any future components that I create, using a testing framework such as Jest or Mocha. This will ensure that bugs and errors are minimised as well as building my knowledge of testing.
 - I would like to add end-to-end testing too for the same reasons as the point above.
-- After having researched improving website performance, I would like to improve the website's Google Lighthouse performance score. I would look at adding lazy loading to the card components using the browser's Intersection Observer API, loading the components on demand. 
+- After researching improving website performance, I would like to improve the website's Google Lighthouse performance score. I would look at adding lazy loading to the card components using the browser's Intersection Observer API, loading the components on demand. 
+
 
 ### Useful resources
 

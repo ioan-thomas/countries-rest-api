@@ -17,27 +17,28 @@ export const getStaticProps = async () => {
 	
 	const countryBorders = {};
 
-	const relData = data.map(country => {
+	const countries = data.map(country => {
 		countryBorders[country.cca3] = country.name.common;
 		return { name: country.name.common, 
 		population: country.population,
 		region: country.region,
-		capital: country.capital ? country.capital : null,
+		capital: country.capital || null,
 		flags: country.flags,
 		cca3: country.cca3}
 	})
 
 	return {
-		props: { countries: relData, countryBorders},
+		props: { countries, countryBorders},
         revalidate: 250
 	}
 }
 
 export default function Home({countries, countryBorders}) {
 	const {addBorders} = useContext(BorderContext);
+	// state is immutable
 	const [filterRegion, setFilterRegion] = useState('all');
 	const [searchCriteria, setSearchCriteria] = useState('')
-	const [searchedCountries, setSearchedCountries] = useState(countries)
+	const [countriesToDisplay, setCountriesToDisplay] = useState(countries)
 
 	useEffect(() => {
 		addBorders(countryBorders)
@@ -47,12 +48,12 @@ export default function Home({countries, countryBorders}) {
 		setFilterRegion(region);
     }
 
-	const updateSearchCriteria = val => {
-		setSearchCriteria(val);
+	const updateSearchCriteria = criteria => {
+		setSearchCriteria(criteria);
 	}
 
 	useEffect(() => {
-		setSearchedCountries(countries.filter(country => country.name.toLowerCase().includes(searchCriteria.toLowerCase())));
+		setCountriesToDisplay(countries.filter(country => country.name.toLowerCase().includes(searchCriteria.toLowerCase())));
 	}, [searchCriteria, countries])
 	
 	
@@ -62,7 +63,7 @@ export default function Home({countries, countryBorders}) {
 				<SearchField updateSearchCriteria={updateSearchCriteria}/>
 				<Filter countries={countries} changeFilter={changeFilter}/>
 			</Container>
-			<Cards countries={searchedCountries} filterRegion={filterRegion} />
+			<Cards countries={countriesToDisplay} filterRegion={filterRegion} />
 		</Container>
 	);
 }

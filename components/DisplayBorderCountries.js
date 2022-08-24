@@ -14,8 +14,11 @@ export default function DisplayBorderCountries({borderCountries, allBorders}) {
         
         <Link key={countryName} href={`/${countryName.toLowerCase().replace(removeWhitespaceRegex, '%20')}`}>
             <Box 
-                sx={{fontSize: '12px', padding: '6px 23px', backgroundColor: 'primary.main', 
-                    display: 'inline-block', boxShadow: theme.palette.boxShadow.primary, margin: '5px'}}
+                sx={{fontSize: '12px', padding: '6px 23px', 
+                    backgroundColor: 'primary.main', 
+                    display: 'inline-block', boxShadow: theme.palette.boxShadow.primary, margin: '5px',
+                    '&:hover':{cursor: 'pointer', backgroundColor: theme.palette.hoverColor.primary}
+                }}
                 >{countryName}
             </Box>
         </Link>
